@@ -16,8 +16,8 @@ Ansible provides open-source automation that reduces complexity and runs everywh
 
 # Ansible commands
 
- To ping hosts- 
+ # To ping hosts- 
  ansible -i hosts all -m ping
 
- To run playbook-
-  
+ # To run playbook-
+ ansible-playbook -i hosts file.yml
