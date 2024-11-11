@@ -1,6 +1,6 @@
 ---
 - name: Install the latest version of Nginx on Ubuntu
-  hosts: ubuntu_servers  # Replace with your host group or IP addresses
+  hosts: all  # Replace with your host group or IP addresses
   become: yes            # Use sudo to run commands
   tasks:
 
