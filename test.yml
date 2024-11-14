@@ -1,0 +1,19 @@
+---
+- name: Testing ansible playbook
+  hosts: users
+  become: false
+  tasks:
+       - name: create a test file
+         file:
+          path: /tmp/success1.sh
+          state: touch
+       - name: adding content
+         copy:
+          dest: /tmp/success1.sh
+          content: |
+                  #!/bin/bash
+                  echo "testing ansible playbook"
+                  echo "hello world"
+          mode: '711'
+
+        
