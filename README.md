@@ -4,7 +4,7 @@ Learning ansible
 ================
 
 # What is ansible?
-Ansible is opensource automation and configuration tool and also use to automate tasks.
+Ansible is an open source automation and configuration management tool and also use to automate tasks.
 Ansible provides open-source automation that reduces complexity and runs everywhere. Using Ansible lets you automate virtually any task.
 
 

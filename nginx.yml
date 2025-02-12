@@ -1,0 +1,7 @@
+---
+- name: Setup nginx
+  become: yes
+  hosts: all
+  gather_facts: yes
+  roles:
+    - nginx
