@@ -1,0 +1,7 @@
+---
+- name: Setup jenkins
+  become: yes
+  hosts: all
+  gather_facts: yes
+  roles:
+    - jenkins

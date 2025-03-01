@@ -17,10 +17,12 @@ sudo apt install ansible
 # Ansible commands
 
 To ping hosts- 
-ansible -i hosts all -m ping
+ansible -i hosts/inventory.ini all -m ping
+ansible all -m ping -i hosts/inventory.ini --private-key ~/.ssh/my-key.pem
 
 To run playbook-
-ansible-playbook -i hosts file.yml
+ansible-playbook -i hosts/inventory.ini file.yml
+ansible-playbook -i hosts/inventory.ini file.yml --private-key ~/.ssh/my-key.pem
 
 # Ansibel galaxy 
 

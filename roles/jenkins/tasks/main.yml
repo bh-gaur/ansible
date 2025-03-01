@@ -1,0 +1,62 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for jenkins
+- name: Update and Upgrade APT packages
+  apt:
+    update_cache: yes
+    upgrade: yes
+
+- name: Install Java 
+  apt:
+    name: openjdk-21-jre
+    state: present
+
+- name: Check Java version
+  shell: java -version
+  register: check_version
+  changed_when: false
+
+- name: Display Java version
+  debug: 
+    msg: "{{ check_version.stderr }}"
+
+- name: Add Jenkins Key
+  get_url:
+    url: "{{ jenkins_key }}"
+    dest: /usr/share/keyrings/jenkins-keyring.asc
+    mode: '0644'
+  # register: add_jenkins_key
+
+# - name: Update apt-key cache
+#   command: /usr/bin/apt-key update
+#   when: add_jenkins_key.changed
+
+- name: Set up nginx repo
+  apt_repository:
+    repo: "{{ jenkins_repo }}"  #value from defaults
+    state: present
+    filename: jenkins
+    update_cache: yes
+
+- name: Update APT packages
+  apt:
+    update_cache: yes
+
+- name: Install Jenkins
+  apt:
+    name: ['jenkins']
+
+- name: Start and enable nginx
+  service:
+    name: jenkins
+    state: started
+    enabled: yes
+
+- name: Get Jenkins Admin Password
+  command: cat /var/lib/jenkins/secrets/initialAdminPassword
+  register: jenkins_password
+  changed_when: false  # Prevent Ansible from marking this task as changed
+
+- name: Show Jenkins Admin Password
+  debug:
+    msg: "Jenkins Initial Admin Password: {{ jenkins_password.stdout }}"
