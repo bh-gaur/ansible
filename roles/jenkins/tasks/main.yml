@@ -60,3 +60,6 @@
 - name: Show Jenkins Admin Password
   debug:
     msg: "Jenkins Initial Admin Password: {{ jenkins_password.stdout }}"
+
+# - name: Save Jenkins Admin Password to a Local File
+#   local_action: copy content="{{ jenkins_password.stdout }}" dest="./jenkins_admin_password.txt"
