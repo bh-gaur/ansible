@@ -1,11 +1,11 @@
 ---
 - name: Testing ansible playbook
-  hosts: all
+  hosts: test_user
   become: false
   tasks:
        - name: create a test file
          file:
-          path: /home/vagrant/success1.sh
+          path: /home/ubuntu/success1.sh
           state: touch
        - name: adding content
          copy:
